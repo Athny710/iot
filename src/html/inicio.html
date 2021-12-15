@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/estilos.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="topbar">
+        <img src="/img/G3.png" alt="">
+    </div>
+    <div class="contenedor">
+        <div class="temperatura">
+            <div class="row-1">
+                <div class="chart-container">
+                    <canvas id="myChart"></canvas>
+                </div>
+                <h1>25</h1>
+            </div>
+            <div class="row-2">
+
+            </div>
+        </div>
+        <div class="presencia">
+            <div class="row-3">
+                <img src="/img/presencia-yellow.png" alt="">
+                <span>Habitación segura</span>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const labels = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+        ];
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'My First dataset',
+                borderColor: '#f2b705',
+                data: [0, 10, 5, 2, 20, 30, 45],
+            }]
+        };
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                plugins: {
+                    legend:{
+                        display: false
+                    }
+                }
+            }
+        };
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    </script>
+</body>
+</html>
