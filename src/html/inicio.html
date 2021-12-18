@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/estilos.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="js/chart.js" type="text/javascript"></script>
     <title>Document</title>
 </head>
 <body>
@@ -12,57 +14,31 @@
         <img src="/img/G3.png" alt="">
     </div>
     <div class="contenedor">
+        <h5>Temperatura</h5>
         <div class="temperatura">
             <div class="row-1">
                 <div class="chart-container">
-                    <canvas id="myChart"></canvas>
+                    <canvas id="myChart" style="height:100%; width: 100%;"></canvas>
                 </div>
-                <h1>25</h1>
-            </div>
-            <div class="row-2">
-
+                <h1>25°</h1>
             </div>
         </div>
+        <h5>Presencia</h5>
         <div class="presencia">
+            <div class="row-2">
+                <img id="room" src="/img/room.png" alt="">
+                <img id="person" src="/img/person.png" alt="">
+                <div class="msg">
+                    <span id="span">¡Una persona ha ingresado a la habitación!</span>
+                </div>
+                
+            </div>
             <div class="row-3">
-                <img src="/img/presencia-yellow.png" alt="">
+                <img src="/img/unencrypted.png" alt="">
                 <span>Habitación segura</span>
             </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        const labels = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-        ];
-        const data = {
-            labels: labels,
-            datasets: [{
-                label: 'My First dataset',
-                borderColor: '#f2b705',
-                data: [0, 10, 5, 2, 20, 30, 45],
-            }]
-        };
-        const config = {
-            type: 'line',
-            data: data,
-            options: {
-                plugins: {
-                    legend:{
-                        display: false
-                    }
-                }
-            }
-        };
-        const myChart = new Chart(
-            document.getElementById('myChart'),
-            config
-        );
-    </script>
 </body>
 </html>

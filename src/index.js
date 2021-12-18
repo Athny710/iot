@@ -13,3 +13,4 @@ const server = app.listen(app.get('port'), ()=>{
 app.get('/', (req, res)=>{
     res.sendFile(path.join(__dirname,'/html/inicio.html'));
 });
+
