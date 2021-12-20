@@ -1,9 +1,10 @@
 $(document).ready(function(){
 
-    const updateInterval = 500;
-    const numberElements = 20;
+    const updateInterval = 2500;
+    const numberElements = 10;
     var updateCount = 0
     var myChart = $("#myChart");
+    var seguro = 1;
 
     var options = {
         scales: {
@@ -51,7 +52,9 @@ $(document).ready(function(){
         console.log("Updating data...");
         $.ajax({
             method: "GET",
-            url:"http://localhost:3500/"
+            crossDomain: true,
+            dataType: "json",
+            url:"http://3.212.89.55:8090/api/temperatura/temps"
         }).done(addData).fail(function(e){
             console.log(e);
         });
@@ -60,16 +63,46 @@ $(document).ready(function(){
 
     function addData(data){
         if(data){
-            myChartInstance.data.labels.push(new Date());
-            myChartInstance.data.datasets.forEach((dataset)=>{dataset.data.push(data['temp'])});
+            var today = new Date();
+            time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+            myChartInstance.data.labels.push(time);
+            myChartInstance.data.datasets.forEach((dataset)=>{dataset.data.push(data.temperatura)});
             if(updateCount > numberElements){
                 myChartInstance.data.labels.shift();
                 myChartInstance.data.datasets[0].data.shift();
+            }else{
+                updateCount++;
             }
-        }else updateCount++;
+            if(data.temperatura<21 && data.temperatura>9){
+                $('#tempInstValue').css("color","#f2b705");
+                $("#tempInstValue").html(data.temperatura);
+            }else{
+                seguro=0
+                $('#tempInstValue').css("color","#f22805");
+                $("#tempInstValue").html(data.temperatura);
+            }
+            
+            if(data.pre == 0){
+                $("#person").hide();
+                $("#span").hide();
+            }else{
+                $("#person").show();
+                $("#span").show();
+            }
+            if(data.pre== 1 || data.temperatura>20 || data.temperatura<10){
+                $("#inseguro").show();
+                $("#seguro").hide();
+                $("#msg").html("Habitación Insegura");
+            }else{
+                $("#inseguro").hide();
+                $("#seguro").show();
+                $("#msg").html("Habitación Segura");
+            }
+        }
         myChartInstance.update();
     }
 
+    updateData();
     /*
     const data = {
         labels: labels,

@@ -20,7 +20,7 @@
                 <div class="chart-container">
                     <canvas id="myChart" style="height:100%; width: 100%;"></canvas>
                 </div>
-                <h1>25°</h1>
+                <h1 id="tempInstValue"></h1>
             </div>
         </div>
         <h5>Presencia</h5>
@@ -34,8 +34,9 @@
                 
             </div>
             <div class="row-3">
-                <img src="/img/unencrypted.png" alt="">
-                <span>Habitación segura</span>
+                <img id="seguro" src="/img/encrypted.png" alt="" hidden>
+                <img id="inseguro" src="/img/unencrypted.png" alt="" hidden>
+                <span id="msg"></span>
             </div>
         </div>
     </div>
