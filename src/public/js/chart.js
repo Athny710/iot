@@ -82,14 +82,14 @@ $(document).ready(function(){
                 $("#tempInstValue").html(data.temperatura);
             }
             
-            if(data.pre == 0){
+            if(data.presencia == 0){
                 $("#person").hide();
                 $("#span").hide();
             }else{
                 $("#person").show();
                 $("#span").show();
             }
-            if(data.pre== 1 || data.temperatura>20 || data.temperatura<10){
+            if(data.presencia == 1 || data.temperatura>20 || data.temperatura<10){
                 $("#inseguro").show();
                 $("#seguro").hide();
                 $("#msg").html("Habitación Insegura");
